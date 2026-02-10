@@ -1,4 +1,4 @@
-![image](https://vincienergies.sharepoint.com/:i:/r/sites/GO-DevOps894/Documents%20partages/General/Communication%20Kit/DevOps%20Logo/DEVOPS_LOGO_ENERGIE/LIBRE/LONG/BASELINE/PNG/DEVOPS_RVB_LOGO_CLASSIC.png?csf=1&web=1&e=jznJor)
+![image](https://vincienergies.sharepoint.com/:i:/r/sites/ttc-erp/Shared%20Documents/50%20-%20Domain%20space/T02%20-%20Dev/999%20-%20Miscellaneous/Logo%20Dev%20Team/logo_dev_team.png)
 
 # Technical Documentation - {{PROJECT_NAME}}
 
