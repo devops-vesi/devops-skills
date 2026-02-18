@@ -1,4 +1,4 @@
-![image](https://vincienergies.sharepoint.com/:i:/r/sites/GO-DevOps894/Documents%20partages/General/Communication%20Kit/DevOps%20Logo/DEVOPS_LOGO_ENERGIE/LIBRE/LONG/BASELINE/PNG/DEVOPS_RVB_LOGO_CLASSIC.png?csf=1&web=1&e=jznJor)
+![image](https://github.com/devops-vesi/devops-skills/blob/main/DevOps_Logo.png)
 
 # Company Skills Repository
 
