@@ -1,3 +1,9 @@
+<!-- 
+AI INSTRUCTIONS:
+- Output file: README.md only
+- Update README.md if it exists, create if it doesn't
+- Do not create additional documentation files
+-->
 ![image](https://github.com/devops-vesi/devops-skills/blob/main/DevOps_Logo.png)
 
 # Technical Documentation - {{PROJECT_NAME}}
