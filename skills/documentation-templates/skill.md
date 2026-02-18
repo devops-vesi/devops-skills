@@ -1,4 +1,4 @@
-![image](https://vincienergies.sharepoint.com/:i:/r/sites/ttc-erp/Shared%20Documents/50%20-%20Domain%20space/T02%20-%20Dev/999%20-%20Miscellaneous/Logo%20Dev%20Team/logo_dev_team.png)
+![image](https://github.com/devops-vesi/devops-skills/blob/main/DevOps_Logo.png)
 
 # Technical Documentation - {{PROJECT_NAME}}
 
