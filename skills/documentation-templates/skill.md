@@ -9,6 +9,7 @@ AI INSTRUCTIONS:
 - If the application is a Fiori Elements app: mention the layout type in the Views section (e.g. List Report, Object Page Layout) and add the "Fiori Elements Type" column in the views table. To detect a Fiori Elements app, check if a `webapp/annotations/` folder exists in the project
 - If the application is NOT a Fiori Elements app (none of the above signals are found): omit the Fiori Elements layout mention and remove the "Fiori Elements Type" column from the views table
 - For all code blocks: use `typescript` if the project uses TypeScript (tsconfig.json present), otherwise use `javascript`
+- Retrieve the Git repository URL automatically by running `git remote get-url origin` in the terminal from the project root, and use the result to fill the `Git Repo` field in the Technical objects table
 -->
 ![image](https://github.com/devops-vesi/devops-skills/blob/main/DevOps_Logo.png)
 
