@@ -58,16 +58,6 @@ This application is used for {{APPLICATION_PURPOSE}}.
 | 2 | {{FEATURE_2_NAME}} | {{FEATURE_2_DESCRIPTION}} |
 | 3 | {{FEATURE_3_NAME}} | {{FEATURE_3_DESCRIPTION}} |
 
-```mermaid
-mindmap
-  root["{{PROJECT_NAME}}"]
-    ["{{FEATURE_1_NAME}}"]
-      ["{{FEATURE_1_DESCRIPTION}}"]
-    ["{{FEATURE_2_NAME}}"]
-      ["{{FEATURE_2_DESCRIPTION}}"]
-    ["{{FEATURE_3_NAME}}"]
-      ["{{FEATURE_3_DESCRIPTION}}"]
-```
 
 #### Views
 This application is composed of {{VIEWS_COUNT}} views.
@@ -83,7 +73,7 @@ This application is composed of {{VIEWS_COUNT}} views.
 
 **Routing diagram:**
 ```mermaid
-flowchart LR
+flowchart TD
     A["{{VIEW_1_NAME}}"] --> B["{{VIEW_2_NAME}}"] --> C["{{VIEW_3_NAME}}"]
 ```
 
