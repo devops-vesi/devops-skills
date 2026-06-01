@@ -237,13 +237,6 @@ flowchart TD
 | `{{SUB_FUNCTION_2_2}}` | `{{SUB_FILE_2_2}}` | {{SUB_ROLE_2_2}} |
 | `{{SUB_FUNCTION_2_3}}` | `{{SUB_FILE_2_3}}` | {{SUB_ROLE_2_3}} |
 
-**Call flow:**
-```mermaid
-flowchart TD
-    A["{{FUNCTION_2_NAME}}"] --> B["{{SUB_FUNCTION_2_1}}"]
-    A --> C["{{SUB_FUNCTION_2_2}}"]
-    C --> D["{{SUB_FUNCTION_2_3}}"]
-```
 
 ### Function 3 — `{{FUNCTION_3_NAME}}`
 **File:** `{{FUNCTION_3_FILE}}`
@@ -280,14 +273,6 @@ flowchart TD
 | `{{SUB_FUNCTION_3_1}}` | `{{SUB_FILE_3_1}}` | {{SUB_ROLE_3_1}} |
 | `{{SUB_FUNCTION_3_2}}` | `{{SUB_FILE_3_2}}` | {{SUB_ROLE_3_2}} |
 | `{{SUB_FUNCTION_3_3}}` | `{{SUB_FILE_3_3}}` | {{SUB_ROLE_3_3}} |
-
-**Call flow:**
-```mermaid
-flowchart TD
-    A["{{FUNCTION_3_NAME}}"] --> B["{{SUB_FUNCTION_3_1}}"]
-    A --> C["{{SUB_FUNCTION_3_2}}"]
-    C --> D["{{SUB_FUNCTION_3_3}}"]
-```
 
 
 ---
