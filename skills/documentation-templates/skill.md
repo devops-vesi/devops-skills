@@ -60,13 +60,13 @@ This application is used for {{APPLICATION_PURPOSE}}.
 
 ```mermaid
 mindmap
-  root(({{PROJECT_NAME}}))
-    {{FEATURE_1_NAME}}
-      {{FEATURE_1_DESCRIPTION}}
-    {{FEATURE_2_NAME}}
-      {{FEATURE_2_DESCRIPTION}}
-    {{FEATURE_3_NAME}}
-      {{FEATURE_3_DESCRIPTION}}
+  root["{{PROJECT_NAME}}"]
+    ["{{FEATURE_1_NAME}}"]
+      ["{{FEATURE_1_DESCRIPTION}}"]
+    ["{{FEATURE_2_NAME}}"]
+      ["{{FEATURE_2_DESCRIPTION}}"]
+    ["{{FEATURE_3_NAME}}"]
+      ["{{FEATURE_3_DESCRIPTION}}"]
 ```
 
 #### Views
@@ -84,7 +84,7 @@ This application is composed of {{VIEWS_COUNT}} views.
 **Routing diagram:**
 ```mermaid
 flowchart LR
-    {{VIEW_1_NAME}} --> {{VIEW_2_NAME}} --> {{VIEW_3_NAME}}
+    A["{{VIEW_1_NAME}}"] --> B["{{VIEW_2_NAME}}"] --> C["{{VIEW_3_NAME}}"]
 ```
 
 ---
@@ -181,9 +181,9 @@ flowchart LR
 **Call flow:**
 ```mermaid
 flowchart TD
-    {{FUNCTION_1_NAME}} --> {{SUB_FUNCTION_1_1}}
-    {{SUB_FUNCTION_1_1}} --> {{SUB_FUNCTION_1_2}}
-    {{SUB_FUNCTION_1_2}} --> {{SUB_FUNCTION_1_3}}
+    A["{{FUNCTION_1_NAME}}"] --> B["{{SUB_FUNCTION_1_1}}"]
+    B --> C["{{SUB_FUNCTION_1_2}}"]
+    C --> D["{{SUB_FUNCTION_1_3}}"]
 ```
 
 **Code explanation:**
@@ -206,9 +206,9 @@ flowchart TD
 **Call flow:**
 ```mermaid
 flowchart TD
-    {{FUNCTION_2_NAME}} --> {{SUB_FUNCTION_2_1}}
-    {{FUNCTION_2_NAME}} --> {{SUB_FUNCTION_2_2}}
-    {{SUB_FUNCTION_2_2}} --> {{SUB_FUNCTION_2_3}}
+    A["{{FUNCTION_2_NAME}}"] --> B["{{SUB_FUNCTION_2_1}}"]
+    A --> C["{{SUB_FUNCTION_2_2}}"]
+    C --> D["{{SUB_FUNCTION_2_3}}"]
 ```
 
 **Code explanation:**
@@ -231,9 +231,9 @@ flowchart TD
 **Call flow:**
 ```mermaid
 flowchart TD
-    {{FUNCTION_3_NAME}} --> {{SUB_FUNCTION_3_1}}
-    {{FUNCTION_3_NAME}} --> {{SUB_FUNCTION_3_2}}
-    {{SUB_FUNCTION_3_2}} --> {{SUB_FUNCTION_3_3}}
+    A["{{FUNCTION_3_NAME}}"] --> B["{{SUB_FUNCTION_3_1}}"]
+    A --> C["{{SUB_FUNCTION_3_2}}"]
+    C --> D["{{SUB_FUNCTION_3_3}}"]
 ```
 
 **Code explanation:**
