@@ -211,12 +211,75 @@ flowchart TD
     C --> D["{{SUB_FUNCTION_2_3}}"]
 ```
 
+### Function 2 — `{{FUNCTION_2_NAME}}`
+**File:** `{{FUNCTION_2_FILE}}`
+**Purpose:** {{FUNCTION_2_PURPOSE}}
+
+**Sub-functions called:**
+| Sub-function | File | Role |
+| ------------ | ---- | ---- |
+| `{{SUB_FUNCTION_2_1}}` | `{{SUB_FILE_2_1}}` | {{SUB_ROLE_2_1}} |
+| `{{SUB_FUNCTION_2_2}}` | `{{SUB_FILE_2_2}}` | {{SUB_ROLE_2_2}} |
+| `{{SUB_FUNCTION_2_3}}` | `{{SUB_FILE_2_3}}` | {{SUB_ROLE_2_3}} |
+
+**Call flow:**
+```mermaid
+flowchart TD
+    A["{{FUNCTION_2_NAME}}"] --> B["{{SUB_FUNCTION_2_1}}"]
+    A --> C["{{SUB_FUNCTION_2_2}}"]
+    C --> D["{{SUB_FUNCTION_2_3}}"]
+```
+
 **Code explanation:**
 
 {{FUNCTION_2_CODE_EXPLANATION}}
 
 ```{{LANG}}
 {{FUNCTION_2_CODE_SNIPPET}}
+``` — `{{FUNCTION_2_NAME}}`
+**File:** `{{FUNCTION_2_FILE}}`
+**Purpose:** {{FUNCTION_2_PURPOSE}}
+
+**Sub-functions called:**
+| Sub-function | File | Role |
+| ------------ | ---- | ---- |
+| `{{SUB_FUNCTION_2_1}}` | `{{SUB_FILE_2_1}}` | {{SUB_ROLE_2_1}} |
+| `{{SUB_FUNCTION_2_2}}` | `{{SUB_FILE_2_2}}` | {{SUB_ROLE_2_2}} |
+| `{{SUB_FUNCTION_2_3}}` | `{{SUB_FILE_2_3}}` | {{SUB_ROLE_2_3}} |
+
+**Call flow:**
+```mermaid
+flowchart TD
+    A["{{FUNCTION_2_NAME}}"] --> B["{{SUB_FUNCTION_2_1}}"]
+    A --> C["{{SUB_FUNCTION_2_2}}"]
+    C --> D["{{SUB_FUNCTION_2_3}}"]
+```
+
+### Function 3 — `{{FUNCTION_3_NAME}}`
+**File:** `{{FUNCTION_3_FILE}}`
+**Purpose:** {{FUNCTION_3_PURPOSE}}
+
+**Sub-functions called:**
+| Sub-function | File | Role |
+| ------------ | ---- | ---- |
+| `{{SUB_FUNCTION_3_1}}` | `{{SUB_FILE_3_1}}` | {{SUB_ROLE_3_1}} |
+| `{{SUB_FUNCTION_3_2}}` | `{{SUB_FILE_3_2}}` | {{SUB_ROLE_3_2}} |
+| `{{SUB_FUNCTION_3_3}}` | `{{SUB_FILE_3_3}}` | {{SUB_ROLE_3_3}} |
+
+**Call flow:**
+```mermaid
+flowchart TD
+    A["{{FUNCTION_3_NAME}}"] --> B["{{SUB_FUNCTION_3_1}}"]
+    B --> C["{{SUB_FUNCTION_3_2}}"]
+    C --> D["{{SUB_FUNCTION_3_3}}"]
+```
+
+**Code explanation:**
+
+{{FUNCTION_3_CODE_EXPLANATION}}
+
+```{{LANG}}
+{{FUNCTION_3_CODE_SNIPPET}}
 ``` — `{{FUNCTION_3_NAME}}`
 **File:** `{{FUNCTION_3_FILE}}`
 **Purpose:** {{FUNCTION_3_PURPOSE}}
@@ -236,13 +299,6 @@ flowchart TD
     C --> D["{{SUB_FUNCTION_3_3}}"]
 ```
 
-**Code explanation:**
-
-{{FUNCTION_3_CODE_EXPLANATION}}
-
-```{{LANG}}
-{{FUNCTION_3_CODE_SNIPPET}}
-```
 
 ---
 
@@ -251,7 +307,7 @@ All available `start` scripts from `package.json` *(list every script whose name
 
 | Script | Command | Description |
 | ------ | ------- | ----------- |
-| `{{SCRIPT_NAME}}` | `{{SCRIPT_COMMAND}}` | {{SCRIPT_DESCRIPTION}} |
+| `{{SCRIPT_NAME}}` | `{{SCRIPT_COMMANDs}}` | {{SCRIPT_DESCRIPTION}} |
 
 ```json
 "scripts": {
