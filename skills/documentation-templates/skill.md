@@ -58,6 +58,17 @@ This application is used for {{APPLICATION_PURPOSE}}.
 | 2 | {{FEATURE_2_NAME}} | {{FEATURE_2_DESCRIPTION}} |
 | 3 | {{FEATURE_3_NAME}} | {{FEATURE_3_DESCRIPTION}} |
 
+```mermaid
+mindmap
+  root(({{PROJECT_NAME}}))
+    {{FEATURE_1_NAME}}
+      {{FEATURE_1_DESCRIPTION}}
+    {{FEATURE_2_NAME}}
+      {{FEATURE_2_DESCRIPTION}}
+    {{FEATURE_3_NAME}}
+      {{FEATURE_3_DESCRIPTION}}
+```
+
 #### Views
 This application is composed of {{VIEWS_COUNT}} views.
 
@@ -71,8 +82,9 @@ This application is composed of {{VIEWS_COUNT}} views.
 | {{VIEW_3_NAME}} | {{ROUTE_3}} | {{VIEW_3_DESCRIPTION}} | {{VIEW_2_NAME}} | — |
 
 **Routing diagram:**
-```
-{{VIEW_1_NAME}} ──► {{VIEW_2_NAME}} ──► {{VIEW_3_NAME}}
+```mermaid
+flowchart LR
+    {{VIEW_1_NAME}} --> {{VIEW_2_NAME}} --> {{VIEW_3_NAME}}
 ```
 
 ---
@@ -167,14 +179,17 @@ This application is composed of {{VIEWS_COUNT}} views.
 | `{{SUB_FUNCTION_1_3}}` | `{{SUB_FILE_1_3}}` | {{SUB_ROLE_1_3}} |
 
 **Call flow:**
-```
-{{FUNCTION_1_NAME}}
-  └─ {{SUB_FUNCTION_1_1}}
-       └─ {{SUB_FUNCTION_1_2}}
-            └─ {{SUB_FUNCTION_1_3}}
+```mermaid
+flowchart TD
+    {{FUNCTION_1_NAME}} --> {{SUB_FUNCTION_1_1}}
+    {{SUB_FUNCTION_1_1}} --> {{SUB_FUNCTION_1_2}}
+    {{SUB_FUNCTION_1_2}} --> {{SUB_FUNCTION_1_3}}
 ```
 
 **Code explanation:**
+
+{{FUNCTION_1_CODE_EXPLANATION}}
+
 ```{{LANG}}
 {{FUNCTION_1_CODE_SNIPPET}}
 ``` — `{{FUNCTION_2_NAME}}`
@@ -189,14 +204,17 @@ This application is composed of {{VIEWS_COUNT}} views.
 | `{{SUB_FUNCTION_2_3}}` | `{{SUB_FILE_2_3}}` | {{SUB_ROLE_2_3}} |
 
 **Call flow:**
-```
-{{FUNCTION_2_NAME}}
-  └─ {{SUB_FUNCTION_2_1}}
-  └─ {{SUB_FUNCTION_2_2}}
-       └─ {{SUB_FUNCTION_2_3}}
+```mermaid
+flowchart TD
+    {{FUNCTION_2_NAME}} --> {{SUB_FUNCTION_2_1}}
+    {{FUNCTION_2_NAME}} --> {{SUB_FUNCTION_2_2}}
+    {{SUB_FUNCTION_2_2}} --> {{SUB_FUNCTION_2_3}}
 ```
 
 **Code explanation:**
+
+{{FUNCTION_2_CODE_EXPLANATION}}
+
 ```{{LANG}}
 {{FUNCTION_2_CODE_SNIPPET}}
 ``` — `{{FUNCTION_3_NAME}}`
@@ -211,14 +229,17 @@ This application is composed of {{VIEWS_COUNT}} views.
 | `{{SUB_FUNCTION_3_3}}` | `{{SUB_FILE_3_3}}` | {{SUB_ROLE_3_3}} |
 
 **Call flow:**
-```
-{{FUNCTION_3_NAME}}
-  └─ {{SUB_FUNCTION_3_1}}
-  └─ {{SUB_FUNCTION_3_2}}
-       └─ {{SUB_FUNCTION_3_3}}
+```mermaid
+flowchart TD
+    {{FUNCTION_3_NAME}} --> {{SUB_FUNCTION_3_1}}
+    {{FUNCTION_3_NAME}} --> {{SUB_FUNCTION_3_2}}
+    {{SUB_FUNCTION_3_2}} --> {{SUB_FUNCTION_3_3}}
 ```
 
 **Code explanation:**
+
+{{FUNCTION_3_CODE_EXPLANATION}}
+
 ```{{LANG}}
 {{FUNCTION_3_CODE_SNIPPET}}
 ```
