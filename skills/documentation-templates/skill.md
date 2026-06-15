@@ -10,6 +10,7 @@ AI INSTRUCTIONS:
 - If the application is NOT a Fiori Elements app (none of the above signals are found): omit the Fiori Elements layout mention and remove the "Fiori Elements Type" column from the views table
 - For all code blocks: use `typescript` if the project uses TypeScript (tsconfig.json present), otherwise use `javascript`
 - Retrieve the Git repository URL automatically by running `git remote get-url origin` in the terminal from the project root, and use the result to fill the `Git Repo` field in the Technical objects table
+- For the "SAP Catalog & Authorization" section (chapter 2): this information cannot be retrieved from the source code. Explicitly ask the user to provide the following before generating that section: Catalog ID, Catalog Name, Tile/App ID, and the list of SAP roles (with description and access level) required to access the application in SU01
 -->
 ![image](https://github.com/devops-vesi/devops-skills/blob/main/DevOps_Logo.png)
 
@@ -80,6 +81,25 @@ flowchart TD
 ---
 
 ## Technical Details <a name="chapter2"></a>
+
+### SAP Catalog & Authorization
+
+
+#### Catalog
+| Field | Value |
+| ----- | ----- |
+| Catalog ID | {{CATALOG_ID}} |
+| Catalog Name | {{CATALOG_NAME}} |
+| Tile / App ID | {{TILE_APP_ID}} |
+
+#### Roles (SU01)
+List of SAP roles required to access and use this application:
+
+| Role | Description | Access Level |
+| ---- | ----------- | ------------ |
+| {{ROLE_1}} | {{ROLE_1_DESCRIPTION}} | {{ROLE_1_ACCESS}} |
+| {{ROLE_2}} | {{ROLE_2_DESCRIPTION}} | {{ROLE_2_ACCESS}} |
+
 ### oData Service — {{ODATA_SERVICE_NAME}} ({{ODATA_VERSION}})
 > Version: **{{ODATA_VERSION}}** — V2 / V4
 
@@ -103,6 +123,7 @@ flowchart TD
 | Name | HTTP Method | Description | Parameters | Return |
 | ---- | ----------- | ----------- | ---------- | ------ |
 | {{FUNCTION_IMPORT_1}} | GET / POST | {{DESCRIPTION_1}} | {{PARAMS_1}} | {{RETURN_1}} |
+
 
 ---
 
