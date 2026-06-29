@@ -11,6 +11,7 @@ AI INSTRUCTIONS:
 - For all code blocks: use `typescript` if the project uses TypeScript (tsconfig.json present), otherwise use `javascript`
 - Retrieve the Git repository URL automatically by running `git remote get-url origin` in the terminal from the project root, and use the result to fill the `Git Repo` field in the Technical objects table
 - For the "SAP Catalog & Authorization" section (chapter 2): this information cannot be retrieved from the source code. Explicitly ask the user to provide the following before generating that section: Catalog ID, Catalog Name, Tile/App ID, and the list of SAP roles (with description and access level) required to access the application in SU01
+- Explicitly ask the user to provide the reviewer and author names before generating the Document history table
 -->
 ![image](https://github.com/devops-vesi/devops-skills/blob/main/DevOps_Logo.png)
 
