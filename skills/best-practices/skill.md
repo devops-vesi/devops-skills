@@ -12,21 +12,27 @@ This skill encompasses a set of best practices for writing clean, maintainable, 
 
 
 # AI Behavior
-- Always apply the rules in the path corresponding to the language when editing TypeScript and Javascript code, even if not explicitly asked for.
-- When the user ask for a refactor, an improvement, a review, or any change on existing TypeScript or Javascript code, look for any possible small cleanup that can be done alongside the asked-for change and apply the rules in the path corresponding to the language to fix them without being asked.
-- If you see a violation of any of the rules in the path corresponding to the language that cannot be fixed in a small change, leave a comment in the code suggesting the improvement, so that it can be addressed in a future edit.
-- When you fix a violation of any of the rules in the path corresponding to the language, also look for and fix any other violations of the rules in the same path that you see in the same code, as long as they can be fixed in small changes alongside the requested edit.
-- Always prioritize fixing violations of the rules in the path corresponding to the language over other types of improvements, as long as they can be done in small changes alongside the requested edit.
-- When working on TypeScript code, call fetch_skill for each skill under `best-practices/typescript/`
-- When working on JavaScript code, call fetch_skill for each skill under `best-practices/javascript/`
-- Apply all loaded rules before responding
+- When working on TypeScript or JavaScript code, call fetch_skill for each skill listed below before responding.
+- Always apply all loaded rules when editing TypeScript or JavaScript code, even if not explicitly asked for.
+- When you see a violation of any rule that cannot be fixed in a small change, leave a comment in the code suggesting the improvement, so that it can be addressed in a future edit.
+- Always prioritize fixing rule violations over other types of improvements, as long as they can be done in small changes alongside the requested edit.
+- Apply all loaded rules before responding.
 
-## Available skills by language
+## Available skills
 
-### TypeScript
-- [Naming conventions](./typescript/naming/skill.md)
-- [Variable declaration and initialization](./typescript/variables/skill.md)
-
-### JavaScript
-- [Naming conventions](./javascript/naming/skill.md)
-- [Variable declaration and initialization](./javascript/variables/skill.md)
+- `best-practices/naming` — Naming conventions (variables, functions, classes, interfaces)
+- `best-practices/variables` — Variable declaration and initialization
+- `best-practices/comparisons` — Comparison best practices (`===` vs `==`, optional chaining, and more)
+- `best-practices/immutability` — Immutability best practices (avoid direct mutation of objects and arrays, and more)
+- `best-practices/control-flow` — Control flow best practices (Return Early Pattern, `for...of` loops, and more)
+- `best-practices/modules` — Module import best practices (load only what you need, absolute paths in `sap.ui.define`, and more)
+- `best-practices/logging` — Logging best practices (avoid jQuery for error logs, and more)
+- `best-practices/models` — Model-driven UI and OData path best practices (bind via model, use `createKey`, and more)
+- `best-practices/accessibility` — Accessibility best practices (button tooltips, and more)
+- `best-practices/events` — Event handler best practices (consolidate handlers, avoid inline DOM manipulation, and more)
+- `best-practices/code-quality` — Code quality best practices (avoid duplication, extract methods, refactor conditionals, and more)
+- `best-practices/storage` — Storage best practices (use localStorage/sessionStorage for transient data, and more)
+- `best-practices/styling` — CSS styling best practices (SAP standard methods, CSS classes, native SAPUI5 classes, and more)
+- `best-practices/ux` — UX best practices (busy indicator feedback, and more)
+- `best-practices/error-handling` — Error handling best practices (try/catch, async errors, OData error callbacks)
+- `best-practices/i18n` — i18n best practices (Unicode escape sequences in .properties files, and more)
