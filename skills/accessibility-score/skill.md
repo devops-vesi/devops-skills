@@ -43,3 +43,16 @@ finalScore = round(0.8 * conformityScore + 0.2 * ssaScore)   // out of 100, 100 
 ```
 
 Report the final score to the user along with the two sub-scores and, for the conformity part, which rules failed and why (so it's actionable, not just a number).
+
+Always accompany the final score with a recap table listing every transgression found (across both the Support Assistant issues and the conformity check), with one row per violation (not one row per rule) so each occurrence is traceable:
+
+| Rule transgressed | Violations | Location | Reason flagged |
+|---|---|---|---|
+| e.g. `sap.m.Image` missing `alt`/`decorative` | 3 | `webapp/view/Detail.view.xml` (lines/control IDs) | Screen readers can't announce the image / no accessible name provided |
+
+- **Rule transgressed**: the exact rule name/id from the fetched `best-practices/accessibility` skill, or the Support Assistant rule id for SSA-sourced issues.
+- **Violations**: count of occurrences for that rule at that location.
+- **Location**: file path (and line/control id when available) where the violation occurs; group by location if the same rule is violated in multiple places, one row per location.
+- **Reason flagged**: brief explanation of why this specific instance breaks the rule.
+
+If there are zero violations, state that explicitly instead of showing an empty table.

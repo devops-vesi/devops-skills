@@ -488,34 +488,21 @@ this._oPopover.openBy(oSource);
 
 ### Provide a perceivable placeholder for blank/empty values
 
-Empty values in text fields, object attributes, or table cells must not be rendered as a truly empty string with no accessible content — provide a explicit placeholder (e.g. an em dash `"–"`, or an i18n "Not specified" text) so screen readers announce something meaningful instead of silently skipping the field/cell.
+This rule applies only to controls used **inside tables and forms** (e.g. `Table`/`sap.m.Table` cells, `SimpleForm`/`Form` fields). In those contexts, empty values must not be rendered as a truly empty string with no accessible content — set `emptyIndicatorMode="On"` on the control so it automatically shows/announces a placeholder (e.g. "–") when the bound value is empty, instead of silently skipping the field/cell.
 
 #### The Rule in Practice
 
 ```xml
-<!-- Avoid this — an empty text is invisible/unannounced to screen readers: -->
+<!-- Avoid this — an empty text in a table/form is invisible/unannounced to screen readers: -->
 <m:Text id="idDescriptionText" text="{Description}"/>
 <m:ObjectIdentifier id="idSupplierObjectIdentifier" title="{Supplier}"/>
 
-<!-- Do this — fall back to a meaningful placeholder when the bound value is empty: -->
-<m:Text id="idDescriptionText" text="{
-    path: 'Description',
-    formatter: '.formatter.emptyValuePlaceholder'
-}"/>
-<m:ObjectIdentifier id="idSupplierObjectIdentifier" title="{
-    path: 'Supplier',
-    formatter: '.formatter.emptyValuePlaceholder'
-}"/>
+<!-- Do this — let the control handle the empty state via emptyIndicatorMode: -->
+<m:Text id="idDescriptionText" text="{Description}" emptyIndicatorMode="On"/>
+<m:ObjectIdentifier id="idSupplierObjectIdentifier" title="{Supplier}" emptyIndicatorMode="On"/>
 ```
 
-```javascript
-// formatter.js
-emptyValuePlaceholder: function (sValue) {
-    return sValue && sValue.length > 0 ? sValue : this.getResourceBundle().getText("txtNotSpecified");
-}
-```
-
-> **Why it matters:** A blank cell or text is easy to miss visually and gives no signal to a screen reader that a value was expected but absent. An explicit placeholder communicates "there is no value" instead of appearing as a gap or being skipped entirely.
+> **Why it matters:** A blank cell or field is easy to miss visually and gives no signal to a screen reader that a value was expected but absent. `emptyIndicatorMode` communicates "there is no value" instead of appearing as a gap or being skipped entirely.
 
 ---
 
