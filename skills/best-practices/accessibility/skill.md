@@ -2,7 +2,7 @@
 name: accessibility
 description: Use when writing or reviewing SAPUI5 XML views/fragments (and their controllers) to ensure interactive elements meet accessibility requirements covering ARIA roles, accessible names, error/context-change management, keyboard navigation, and empty-value handling.
 when_to_use: |
-  Also trigger on: "refactor this", "while you're at it", "any quick wins", "improve this a bit", "review this", "accessibility", "a11y", "screen reader", or when editing SAPUI5 XML views/fragments that contain interactive elements such as Buttons, Links, Icons, Images, Inputs, Tables, Dialogs, Popovers, Menus, SegmentedButtons, IconTabBars, or Landmarks.
+  Also trigger on: "refactor this", "while you're at it", "any quick wins", "improve this a bit", "review this", "accessibility", "a11y", "screen reader", or when editing SAPUI5 XML views/fragments that contain interactive elements such as Buttons, Links, Icons, Images, Inputs, Tables, Dialogs, Popovers, Menus, SegmentedButtons, IconTabBars, FileUploaders, Landmarks, or any other control (listed here or not) that can render itself as an icon-only button with no visible text (e.g. `FileUploader`, `MenuButton`, `ToggleButton`).
 ---
 
 # AI Behavior
@@ -90,23 +90,37 @@ Top-level page regions (header, navigation, main content, search, complementary 
 
 ## Category: Accessible Name
 
-### Buttons without text must have a tooltip
+### Buttons (and any control that can render as a button) without text must have a tooltip
 
-Any `<m:Button>` that does not have a `text` attribute must always include a `tooltip` attribute. Without a visible label or tooltip, the button is inaccessible to screen readers and keyboard-only users.
+This rule is not limited to a fixed list of controls: it applies to **any** SAPUI5 control — `<m:Button>` included — that can end up rendered as an icon-only, button-like trigger with no visible text. Whenever a control has a property that suppresses/omits its visible text (e.g. no `text`, an empty `buttonText`, an icon-only display mode/`buttonOnly` flag, etc.), it must always include a `tooltip` attribute. Recognized examples include `<unified:FileUploader buttonOnly="true">`, `MenuButton`, `OverflowToolbarButton`, and `ToggleButton`, but the same reasoning applies to any other current or future control with the same icon-only behavior — always check whether the control you are using can render without visible text, regardless of whether it is listed here.
 
 #### The Rule in Practice
 
 ```xml
-<!-- Avoid this — icon-only buttons with no tooltip (inaccessible): -->
+<!-- Avoid this — icon-only buttons/button-rendering controls with no tooltip (inaccessible): -->
 <m:Button icon="sap-icon://decline" press="clearAllFilters"/>
 <m:Button icon="sap-icon://edit" press="onButtonEditTableColumnPress"/>
+<unified:FileUploader
+    id="regDocUploader"
+    buttonOnly="true"
+    icon="sap-icon://upload"
+    name="file"
+    uploadUrl="/upload"/>
 
-<!-- Do this — add a tooltip whenever the text attribute is absent: -->
+<!-- Do this — add a tooltip whenever there is no visible text label: -->
 <m:Button icon="sap-icon://decline" tooltip="{i18n>txtClearAllFilters}" press="clearAllFilters"/>
 <m:Button icon="sap-icon://edit" tooltip="{i18n>txtEdit}" press="onButtonEditTableColumnPress"/>
+<unified:FileUploader
+    id="regDocUploader"
+    tooltip="{i18n>txtUploadRegistrationDocument}"
+    buttonOnly="true"
+    buttonText="{i18n>txtUploadDocument}"
+    icon="sap-icon://upload"
+    name="file"
+    uploadUrl="/upload"/>
 ```
 
-> **Why it matters:** Users relying on screen readers or keyboard navigation cannot understand the purpose of an icon-only button without a descriptive tooltip, which becomes its accessible name (`[aria-label] + [title]`). This is required by WCAG accessibility guidelines.
+> **Why it matters:** Users relying on screen readers or keyboard navigation cannot understand the purpose of an icon-only button — or any control rendered as one — without a descriptive tooltip (or text), which becomes its accessible name (`[aria-label] + [title]`). This is required by WCAG accessibility guidelines. Even when a control like `FileUploader` has a `buttonText`, a `tooltip` still provides a more explicit accessible description of the action.
 
 ---
 
@@ -502,3 +516,23 @@ emptyValuePlaceholder: function (sValue) {
 ```
 
 > **Why it matters:** A blank cell or text is easy to miss visually and gives no signal to a screen reader that a value was expected but absent. An explicit placeholder communicates "there is no value" instead of appearing as a gap or being skipped entirely.
+
+---
+
+### Set the level property to title
+
+Title elements (e.g., `Title` control) should have their `level` property set to `TitleLevel.H1`, `TitleLevel.H2`, etc., to convey the correct semantic importance to screen readers and assistive technologies. This ensures that headings are properly structured and navigable.
+
+#### The Rule in Practice
+
+```xml
+<!-- Avoid this — no level specified, may default incorrectly: -->
+<m:Title id="idPageTitle" text="Page Title"/>
+
+<!-- Do this — explicitly set the level to convey semantic importance: -->
+<m:Title id="idPageTitle" text="Page Title" level="H1"/>
+```
+
+> **Why it matters:** Properly structured headings help screen reader users understand the hierarchy and organization of content, making navigation more efficient and the overall experience more accessible.
+
+---
