@@ -19,7 +19,7 @@ when_to_use: |
 1. Make sure the app's dev server is running, then open the app in a browser page via the chrome-devtools MCP tools only.
 2. Press `Control+Alt+Shift+P` to open the Technical Information dialog, then click **"Activate Support Assistant"**.
 3. Inside the Support Assistant frame, click **Analyze**, switch to the **Issues** tab, and set the **Category** filter to **Accessibility only** (ignore every other category — Usage, Functionality, Performance, etc. are out of scope for this score).
-4. Read the **High / Medium / Low** counts reported for the Accessibility category.
+4. Count the **High / Medium / Low**  reported issues for the Accessibility category. And keep this number, no need to record the individual issues themselves — only the counts matter for the score calculation. DO NOT TRY TO KNOW WHAT EACH ISSUE REFERS TO OR ITS DETAILS.
 5. Compute the sub-score:
    ```
    ssaScore = max(0, 100 - (High * 20 + Medium * 8 + Low * 2))
@@ -42,15 +42,15 @@ when_to_use: |
 finalScore = round(0.8 * conformityScore + 0.2 * ssaScore)   // out of 100, 100 = best
 ```
 
-Report the final score to the user along with the two sub-scores and, for the conformity part, which rules failed and why (so it's actionable, not just a number).
+Report the final score to the user along with the two sub-scores and, for the conformity part, which rules failed and why (so it's actionable, not just a number) only for the `best-practices/accessibility` conformity check.
 
-Always accompany the final score with a recap table listing every transgression found (across both the Support Assistant issues and the conformity check), with one row per violation (not one row per rule) so each occurrence is traceable:
+Always accompany the final score with a recap table listing every transgression found (across conformity check), with one row per violation (not one row per rule) so each occurrence is traceable:
 
 | Rule transgressed | Violations | Location | Reason flagged |
 |---|---|---|---|
 | e.g. `sap.m.Image` missing `alt`/`decorative` | 3 | `webapp/view/Detail.view.xml` (lines/control IDs) | Screen readers can't announce the image / no accessible name provided |
 
-- **Rule transgressed**: the exact rule name/id from the fetched `best-practices/accessibility` skill, or the Support Assistant rule id for SSA-sourced issues.
+- **Rule transgressed**: the exact rule name/id from the fetched `best-practices/accessibility` skill only, do not do it for the Support Assistant rule id for SSA-sourced issues.
 - **Violations**: count of occurrences for that rule at that location.
 - **Location**: file path (and line/control id when available) where the violation occurs; group by location if the same rule is violated in multiple places, one row per location.
 - **Reason flagged**: brief explanation of why this specific instance breaks the rule.
