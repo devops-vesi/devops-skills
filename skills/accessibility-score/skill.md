@@ -16,7 +16,7 @@ when_to_use: |
 
 ## Step 1 — SAP Support Assistant score (20%)
 
-1. Make sure the app's dev server is running, then open the app in a browser page via the chrome-devtools MCP tools only.
+1. Make sure the app's dev server is running via the chrome-devtools MCP tools only then open the app in a browser page via the chrome-devtools MCP tools only.
 2. Press `Control+Alt+Shift+P` to open the Technical Information dialog, then click **"Activate Support Assistant"**.
 3. Inside the Support Assistant frame, click **Analyze**, switch to the **Issues** tab, and set the **Category** filter to **Accessibility only** (ignore every other category — Usage, Functionality, Performance, etc. are out of scope for this score).
 4. Count the **High / Medium / Low**  reported issues for the Accessibility category. And keep this number, no need to record the individual issues themselves — only the counts matter for the score calculation. DO NOT TRY TO KNOW WHAT EACH ISSUE REFERS TO OR ITS DETAILS.
