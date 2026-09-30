@@ -305,3 +305,24 @@ sap.ui.define([
 > **Why it matters:** Deprecated features may be removed in future SAPUI5 versions, causing breaking changes without notice. Experimental features are subject to API changes at any time. Using maintained features ensures long-term compatibility and access to security fixes and improvements.
 
 ---
+
+## Cast a `byId` result once, to the control's real class, and reuse the reference. (TypeScript only)
+
+Each `as` is an unchecked assertion — a wrong one still compiles. Repeating the same lookup and cast at every use site duplicates that risk; look it up and cast it once instead.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — repeated lookup + cast, once per use:
+(this.byId("nameText") as Text).setText(name);
+(this.byId("nameText") as Text).setVisible(true);
+
+// Do this — one lookup, one cast, reused:
+const oNameText = this.byId("nameText") as Text;
+oNameText.setText(name);
+oNameText.setVisible(true);
+```
+
+> **Why it matters:** Every repeated `as` cast is another chance for the asserted type to drift from reality after a view change, with no compiler warning. A single cast, reused, means there is only one place where the assertion can be wrong — the same principle as avoiding any other duplicated logic.
+
+---

@@ -161,3 +161,43 @@ _onRouteMatched: function (oEvent) {
 > **Why it matters:** `onInit` runs only once at controller creation. If the user navigates away and returns to the same route, `onInit` does not re-run, so data based on route parameters would be stale. `attachPatternMatched` fires on every navigation to the route, ensuring the view always reflects the current URL state.
 
 ---
+
+## Type handler parameters with the specific event class. (TypeScript only)
+
+UI5 ≥ 1.115 ships `Control$EventNameEvent` types. With the generic `Event`, `getParameter()` returns `any` and every payload read goes unchecked. Typing the parameter also enables autocompletion for the parameters available on that event.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — generic Event; getParameter returns any:
+public onSearch(event: Event): void {
+    const query = event.getParameter("newValue") as string;
+}
+
+// Do this — payload typed; a typo in "newValue" fails to compile:
+public onSearch(event: SearchField$LiveChangeEvent): void {
+    const query = event.getParameter("newValue");
+}
+```
+
+> **Why it matters:** The generic `Event` type makes `getParameter()` return `any`, so a typo in the parameter name compiles fine and fails only at runtime. The specific event class makes the payload shape checked and autocompletable.
+
+---
+
+## Never type an event handler parameter `any`. (TypeScript only)
+
+If the specific event type isn't available, fall back to `Event` from `sap/ui/base/Event` — never `any`.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — any silences every check downstream:
+public onSelect(event: any): void {}
+
+// Do this — specific type, or the generic Event as fallback:
+public onSelect(event: ListBase$SelectionChangeEvent): void {}
+```
+
+> **Why it matters:** An `any`-typed event parameter disables checking for every `getParameter()` call inside the handler. Even the generic `Event` fallback still requires an explicit cast at the point of use, keeping the risk visible.
+
+---

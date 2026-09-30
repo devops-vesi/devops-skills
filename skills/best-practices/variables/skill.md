@@ -305,3 +305,72 @@ let fn     = function () {};
 ```
 
 > **Why it matters:** `new String("hello") !== "hello"` — wrapper constructors produce objects, not primitives. This breaks strict equality checks, type guards, and `typeof` comparisons. Literal syntax is always correct, shorter, and consistent.
+
+---
+
+## Never type a value `any`. (TypeScript only)
+
+Where a type is genuinely unknown, use `unknown` and narrow before using it. `any` disables type checking for everything it touches, silently propagating through the rest of the code.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — any turns off checking wherever it flows:
+let data: any = fetchSomething();
+data.foo.bar; // compiles; may crash.
+
+// Do this — unknown forces a narrowing before use:
+let data: unknown = fetchSomething();
+if (isEmployee(data)) {
+    data.name;
+}
+```
+
+> **Why it matters:** `any` is contagious — once a value is typed `any`, every property access, method call, and assignment derived from it also escapes type checking. `unknown` keeps the compiler in the loop by requiring an explicit narrowing before the value can be used.
+
+---
+
+## Give every method an explicit return type, including `void`. (TypeScript only)
+
+The signature is the contract. A refactor that changes the return type should also change the signature — visibly, in the diff — rather than silently propagating through inference.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — inferred; a refactor can change it silently:
+public onSave() {
+    return this.save();
+}
+
+// Do this — the signature is the contract:
+public onSave(): Promise<void> {
+    return this.save();
+}
+```
+
+> **Why it matters:** Without an explicit return type, a change to the implementation (e.g. `save()` starting to return a value) silently changes the method's contract. Reviewers scanning the diff won't see it, and callers relying on the old contract may break without a compiler error.
+
+---
+
+## Prefer inference for locals with initial values; annotate only at boundaries. (TypeScript only)
+
+An annotation duplicates information the compiler already has when the value is on the same line. Reserve annotations for signatures (parameters, return types, class fields) and for locals declared without an initial value.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — redundant; the value already tells you the type:
+const sName: string = "Alice";
+const iCount: number = 42;
+const bActive: boolean = true;
+const aItems: Item[] = getItems(); // getItems() already returns Item[]
+
+// Do this — inference does the job:
+const sName = "Alice";
+const iCount = 42;
+const bActive = true;
+const aItems = getItems();
+```
+
+> **Why it matters:** When a value is initialized on the same line, its type is already visible — annotating it again is pure noise that must be kept in sync if the value ever changes. Annotations earn their keep at boundaries (parameters, return types, class fields, and locals declared without an initializer), where the compiler has nothing else to infer from.
+

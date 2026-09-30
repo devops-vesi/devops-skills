@@ -101,3 +101,37 @@ this.getView().getModel().read("/EntitySet", {
 > **Why it matters:** Unhandled async errors cause silent failures that are impossible to debug. Users receive no feedback, data may be in an inconsistent state, and the root cause is lost. Explicit error handling ensures failures are visible, logged, and communicated.
 
 ---
+
+## Ensure every promise is awaited, returned, or explicitly caught.
+
+A fire-and-forget promise sends its rejection to the console and leaves the UI in an inconsistent state. Every promise-returning call must be `await`ed, `return`ed to a caller that will handle it, or given an explicit `.catch()`.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — fire-and-forget; rejection vanishes to the console:
+this.getModel<ODataModel>().read("/Products");
+
+// Do this — awaited (or returned, or explicitly caught):
+try {
+    await this.getModel<ODataModel>().read("/Products");
+} catch (err) {
+    Log.error("Product read failed", err as Error);
+}
+```
+
+```javascript
+// Avoid this — fire-and-forget; rejection vanishes to the console:
+this.getModel().read("/Products");
+
+// Do this — awaited (or returned, or explicitly caught):
+try {
+    await this.getModel().read("/Products");
+} catch (err) {
+    Log.error("Product read failed", err);
+}
+```
+
+> **Why it matters:** A promise left neither awaited, returned, nor caught still runs — but nothing in the calling code observes its outcome. If it rejects, the error is reported only to the console, and the UI is left showing state that assumed the operation succeeded.
+
+---

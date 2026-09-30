@@ -508,3 +508,47 @@ for (let i = 0; i < iLength; i++) {
 > **Why it matters:** Accessing `.length` (or any computed boundary) on every iteration re-evaluates the expression unnecessarily. Hoisting it to a variable makes the loop boundary explicit and avoids redundant property lookups, especially in tight loops over large arrays.
 
 ---
+
+## Guard nullable UI5 API results with an early return, instead of assuming they exist. (TypeScript only)
+
+UI5 returns `T | undefined` from `getView()`, `getModel()`, `byId()`, and `getSelectedItem()`. Treat that `undefined` as just another edge case and apply the same return-early guard used elsewhere, instead of assuming the value is always present.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — getView() may be undefined; crashes if the view isn't attached:
+const oTable = this.getView().byId("table") as Table;
+
+// Do this — guard first, like any other edge case:
+const oView = this.getView();
+if (!oView) {
+    return;
+}
+const oTable = oView.byId("table") as Table;
+```
+
+> **Why it matters:** UI5 lifecycle methods can genuinely return `undefined` (e.g. before a view is attached, or when a control isn't found). Skipping the guard turns those cases into unhandled runtime crashes instead of a clean early return.
+
+---
+
+## Never use a non-null assertion (`!`) as a shortcut past a guard. (TypeScript only)
+
+`!` is a silent lie that a value is never null — it compiles but proves nothing at runtime. Use the same early-return guard instead of asserting the value away.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — silent lie; crashes if the view isn't there:
+const oTable = this.getView()!.byId("table") as Table;
+
+// Do this — guard first, like any other edge case:
+const oView = this.getView();
+if (!oView) {
+    return;
+}
+const oTable = oView.byId("table") as Table;
+```
+
+> **Why it matters:** `!` asserts "trust me, this is never null" without any runtime check backing that claim. When the assumption is wrong, the failure surfaces as an uncaught `TypeError` instead of the guard clause the compiler could have verified.
+
+---

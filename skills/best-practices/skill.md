@@ -21,7 +21,7 @@ This skill encompasses a set of best practices for writing clean, maintainable, 
 ## Available skills
 
 - `best-practices/naming` — Naming conventions (variables, functions, classes, interfaces)
-- `best-practices/variables` — Variable declaration and initialization
+- `best-practices/variables` — Variable declaration and initialization (avoiding `any`, explicit return types, and more)
 - `best-practices/comparisons` — Comparison best practices (`===` vs `==`, optional chaining, and more)
 - `best-practices/immutability` — Immutability best practices (avoid direct mutation of objects and arrays, and more)
 - `best-practices/control-flow` — Control flow best practices (Return Early Pattern, `for...of` loops, and more)

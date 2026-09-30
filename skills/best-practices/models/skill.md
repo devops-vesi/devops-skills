@@ -180,3 +180,33 @@ const oStatusFilter = new Filter("Status", FilterOperator.EQ, STATUS_ACTIVE);
 > **Why it matters:** Hardcoded filter values are invisible at the call site — a reader cannot tell what `"Tout"` means without context. Named constants make intent clear, are reusable across multiple filters, and can be updated in one place.
 
 ---
+
+## Never navigate the control tree with `getParent()` chains — read from the model instead.
+
+A `getParent()` chain encodes the XML layout into the controller. A view change breaks it with no compiler warning.
+
+### The Rule in Practice
+
+```typescript
+// Avoid this — breaks the moment anyone wraps the button in a layout:
+const oVbox = (event.getSource() as Button).getParent() as VBox;
+const sAddress = (oVbox.getItems()[0] as Input).getValue();
+
+// Do this — read from the model, not the DOM shape:
+const oCtx = event.getSource<Button>().getBindingContext("data");
+const sAddress = oCtx?.getProperty("address") as string;
+```
+
+```javascript
+// Avoid this — breaks the moment anyone wraps the button in a layout:
+const oVbox = event.getSource().getParent();
+const sAddress = oVbox.getItems()[0].getValue();
+
+// Do this — read from the model, not the DOM shape:
+const oCtx = event.getSource().getBindingContext("data");
+const sAddress = oCtx && oCtx.getProperty("address");
+```
+
+> **Why it matters:** A `getParent()` chain hardcodes assumptions about the view's XML structure into the controller. Wrapping a control in an extra layout — a purely cosmetic view change — silently breaks the chain, since there's no compiler check tying it to the actual layout. Reading from the binding context instead decouples the controller from the view's shape.
+
+---
